@@ -20,7 +20,7 @@ public class Creature {
     private int dangerLevel;
     private String healthStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "zone_id")
     private Zone zone;
 }
