@@ -15,27 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.criaturas.Entity.Creature;
+import com.example.criaturas.Entity.Zone;
 import com.example.criaturas.Service.CreatureService;
+import com.example.criaturas.Service.ZoneService;
 
 @RestController
 @RequestMapping("/api/creatures")
 public class CreatureController {
     private final CreatureService creatureService;
+    private final ZoneService zoneService;
 
     @Autowired
-    public CreatureController(CreatureService creatureService) {
+    public CreatureController(CreatureService creatureService, ZoneService zoneService) {
 
         this.creatureService = creatureService;
+        this.zoneService = zoneService;
     }
-
+    
     @PostMapping
-    public String postMethodName(@RequestBody String entity) {
-        // TODO: process POST request
-
-        return entity;
-    }
-
     public ResponseEntity<Creature> createCreature(@RequestBody Creature creature) {
+        Zone zona = creature.getZone();
         Creature newCreature = creatureService.createCreature(creature);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCreature);
     }
