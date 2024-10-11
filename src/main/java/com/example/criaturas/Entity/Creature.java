@@ -1,6 +1,7 @@
 package com.example.criaturas.Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class Creature {
     private int dangerLevel;
     private String healthStatus;
 
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "zone_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Zone zone;
 }
